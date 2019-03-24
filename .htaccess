@@ -1,0 +1,10 @@
+Options -Indexes
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteCond $1 !^(login\.php)
+RewriteCond $1 !^(logout\.php)
+RewriteRule ^(.*)$ $1.php 
+RewriteEngine on
+RewriteRule ^(.*)\.html$ $1.php 
+DirectoryIndex home/welcome.php
