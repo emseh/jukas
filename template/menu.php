@@ -1,7 +1,7 @@
 
 <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: #66899a; border-color: #66899a;">
 	<div class="navbar-header">
-		<img src="../assets/images/logo-unl.png" alt="" width="120" class="img-responsive" alt="Chania" style="position: absolute; margin: 10px;">
+		<img src="../assets/images/cart.png" alt="" width="50" class="img-responsive" alt="Chania" style="margin-left: 20px;">
 	</div>
 	<div class="navbar-collapse collapse" id="navbar-mobile">
 		<ul class="nav navbar-nav navbar-right">
