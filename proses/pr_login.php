@@ -8,7 +8,7 @@
 	$cekuser = mysqli_query($konek,"SELECT * FROM cms_user WHERE username = '".$username."' AND sandi = MD5('".$pass."')");
 	$jumlah = mysqli_num_rows($cekuser);
 	$hasil = mysqli_fetch_array($cekuser);
-	var_dump($hasil);
+	// var_dump($hasil);
 	if ($jumlah == 0) {
 		echo "<script>alert('Username anda belum terdaftar!'); window.location = '../';</script>";
 	} else {

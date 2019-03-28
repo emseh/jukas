@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `tugas_cms`
+-- Database: `jukas`
 --
 
 -- --------------------------------------------------------
@@ -29,11 +29,11 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `cms_cp` (
-  `id` int(11) NOT NULL,
-  `nama` varchar(70) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
-  `telpon` varchar(15) DEFAULT NULL,
-  `subjek` varchar(100) DEFAULT NULL,
+  `id` INT(11) NOT NULL,
+  `nama` VARCHAR(70) DEFAULT NULL,
+  `email` VARCHAR(100) DEFAULT NULL,
+  `telpon` VARCHAR(15) DEFAULT NULL,
+  `subjek` VARCHAR(100) DEFAULT NULL,
   `pesan` text
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 

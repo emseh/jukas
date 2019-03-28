@@ -18,14 +18,16 @@
 				<div class="panel-body">
 					<div class="thumbnail">
 						<div class="thumb">
+							<div style="position: absolute; border: 0px solid black; width: 250px; height: 40px; font-size: 25px; background-color: #8ab9d0; margin-top: inherit; float: left;">
+								<b><?php echo "Rp. ".number_format($hasil['harga'],2,",","."); ?></b>
+							</div>
 							<a href="<?php echo $hasil['nama_file']; ?>" data-popup="lightbox">
 								<img src="<?php echo $hasil['nama_file']; ?>" alt="">
 									<span class="zoom-image"><i class="icon-plus2"></i></span>
 							</a>
 						</div>
 					</div>
-				<p><h6><?php echo $hasil['judul']; ?></h6></p>
-				<b><?php echo "Rp. ".number_format($hasil['harga'],2,",","."); ?></b>
+				<p><h3><?php echo $hasil['judul']; ?></h3></p>
 				<p><?php echo $hasil['desk']; ?></p>
 				</div>
 			</div>
