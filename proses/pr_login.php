@@ -15,9 +15,9 @@
 		if(md5($pass) != $hasil['sandi']) {
 			echo "<script>alert('Username / Password Anda salah'); window.location = '../';</script>";
 		} else {
-			$_SESSION['username'] = $hasil['username'];
-			$_SESSION['iduser'] = $hasil['id_user'];
-			$_SESSION['aksesm'] = $hasil['stat'];
+			$_SESSION['username'] = $hasil[2];
+			$_SESSION['iduser'] = $hasil[0];
+			$_SESSION['aksesm'] = $hasil[8];
 			header('location:../../'.$base_url.'/home/welcome');
 		}
 	}

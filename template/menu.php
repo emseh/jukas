@@ -1,5 +1,6 @@
 
 <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: #66899a; border-color: #66899a;">
+	<!-- jika session username ada -->
 	<?php if (isset($_SESSION['username'])) { ?>
 	<div class="navbar-header">
 		<img src="../assets/images/cart.png" alt="" width="50" class="img-responsive" alt="Chania" style="margin-left: 20px;">
@@ -35,6 +36,7 @@
 			</li>
 		</ul>
 	</div>
+	<!-- jika tidak ada session username -->
 	<?php } else { ?>
 		<div class="navbar-header">
 			<img src="assets/images/cart.png" alt="" width="50" class="img-responsive" alt="Chania" style="margin-left: 20px;">
@@ -53,4 +55,4 @@
 		<li><a class="text-center collapsed" data-toggle="collapse" data-target="#navbar-second-toggle"><i class="icon-menu7"></i></a></li>
 	</ul>
 </div>
-<?php //if (isset($_POST['isi'])) { session_destroy(); echo "<script>window.location = '../../".$base_url."';</script>"; } ?>
+<?php if (isset($_POST['isi'])) { session_destroy(); echo "<script>window.location = '../../".$base_url."';</script>"; } ?>
