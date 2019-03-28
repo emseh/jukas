@@ -1,7 +1,7 @@
 <?php
 	session_start();
 	require_once("../proses/connection.php");
-	if (!isset($_SESSION['username'])) { header('location:login'); }
+	if (!isset($_SESSION['username'])) { header('location:welcome'); }
 	require '../template/header.php';
 
 	$query = mysqli_query($konek,"SELECT * FROM cms_upload");

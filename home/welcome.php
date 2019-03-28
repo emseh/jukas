@@ -1,7 +1,7 @@
 <?php
 	session_start();
 	require_once("../proses/connection.php");
-	if (!isset($_SESSION['username'])) { header('location:login'); }
+	// if (!isset($_SESSION['username'])) { header('location:welcome'); }
 	require '../template/header.php';
 	require '../template/menu.php';
 
@@ -22,7 +22,16 @@
 								<b><?php echo "Rp. ".number_format($hasil['harga'],2,",","."); ?></b>
 							</div>
 							<a href="<?php echo $hasil['nama_file']; ?>" data-popup="lightbox">
-								<img src="<?php echo $hasil['nama_file']; ?>" alt="">
+								<?php
+									//kondisi home jika belum login
+									$url_image = "";
+									if (isset($_SESSION['username'])) {
+										$url_image = $hasil['nama_file'];
+									} else {
+										$url_image = substr($hasil['nama_file'], 3,strlen($hasil['nama_file']));
+									}
+								?>
+								<img src="<?php echo $url_image; ?>" alt="">
 									<span class="zoom-image"><i class="icon-plus2"></i></span>
 							</a>
 						</div>

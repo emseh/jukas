@@ -1,5 +1,6 @@
 
 <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: #66899a; border-color: #66899a;">
+	<?php if (isset($_SESSION['username'])) { ?>
 	<div class="navbar-header">
 		<img src="../assets/images/cart.png" alt="" width="50" class="img-responsive" alt="Chania" style="margin-left: 20px;">
 	</div>
@@ -34,10 +35,22 @@
 			</li>
 		</ul>
 	</div>
+	<?php } else { ?>
+		<div class="navbar-header">
+			<img src="assets/images/cart.png" alt="" width="50" class="img-responsive" alt="Chania" style="margin-left: 20px;">
+		</div>
+		<div class="navbar-collapse collapse" id="navbar-mobile">
+			<ul class="nav navbar-nav navbar-right">
+				<li class="dropdown">
+					<a href="Login" style="padding: 13px 20px;" class='dropdown-toggle'>Login</a>
+				</li>
+			</ul>
+		</div>
+	<?php } ?>
 </div>
 <div class="navbar navbar-default" id="navbar-second">
 	<ul class="nav navbar-nav no-border visible-xs-block">
 		<li><a class="text-center collapsed" data-toggle="collapse" data-target="#navbar-second-toggle"><i class="icon-menu7"></i></a></li>
 	</ul>
 </div>
-<?php if (isset($_POST['isi'])) { session_destroy(); echo "<script>window.location = '../../".$base_url."';</script>"; } ?>
+<?php //if (isset($_POST['isi'])) { session_destroy(); echo "<script>window.location = '../../".$base_url."';</script>"; } ?>
