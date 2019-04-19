@@ -16,9 +16,27 @@
 			<li class="dropdown">
 				<a href="../home/kontak_kami" style="padding: 13px 20px;" class='dropdown-toggle'>Kontak Kami</a>
 			</li>
-			<?php if ($_SESSION['aksesm'] == '0') { ?>
+			<?php if ($_SESSION['aksesm'] == '1') { ?>
 				<li class="dropdown">
 					<a href="../home/pengguna" style="padding: 13px 20px;" class='dropdown-toggle'>Pengguna</a>
+				</li>
+			<?php } ?>
+			<?php if ($_SESSION['aksesm'] == '2') { ?>
+				<li class="dropdown">
+					<a href="" style="padding: 13px 20px;" class='dropdown-toggle' data-toggle="dropdown">penjual</a>
+					<ul class="dropdown-menu">
+						<li>
+							<a href="../home/item_list" style="padding: 13px 20px;" class='dropdown-toggle'>Data Barang</a>
+						</li>
+						<li class="dropdown-submenu">
+							<a href="#" style="padding: 13px 20px;" class='dropdown-toggle' data-toggle="dropdown">Pengaturan</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="../home/kategori_barang" style="padding: 13px 20px;">Nama Kategori Barang</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
 				</li>
 			<?php } ?>
 			<li class="dropdown dropdown-user">

@@ -1,81 +1,63 @@
--- phpMyAdmin SQL Dump
--- version 4.8.5
--- https://www.phpmyadmin.net/
---
--- Host: localhost
--- Waktu pembuatan: 24 Mar 2019 pada 15.57
--- Versi server: 10.1.38-MariaDB
--- Versi PHP: 7.3.3
+/*
+SQLyog Ultimate v11.11 (64 bit)
+MySQL - 5.6.26 : Database - jukas
+*********************************************************************
+*/
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
+/*!40101 SET NAMES utf8 */;
 
+/*!40101 SET SQL_MODE=''*/;
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`jukas` /*!40100 DEFAULT CHARACTER SET latin1 */;
 
---
--- Database: `jukas`
---
+USE `jukas`;
 
--- --------------------------------------------------------
+/*Table structure for table `cms_cp` */
 
---
--- Struktur dari tabel `cms_cp`
---
+DROP TABLE IF EXISTS `cms_cp`;
 
 CREATE TABLE `cms_cp` (
-  `id` INT(11) NOT NULL,
-  `nama` VARCHAR(70) DEFAULT NULL,
-  `email` VARCHAR(100) DEFAULT NULL,
-  `telpon` VARCHAR(15) DEFAULT NULL,
-  `subjek` VARCHAR(100) DEFAULT NULL,
-  `pesan` text
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nama` varchar(70) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `telpon` varchar(15) DEFAULT NULL,
+  `subjek` varchar(100) DEFAULT NULL,
+  `pesan` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data untuk tabel `cms_cp`
---
+/*Data for the table `cms_cp` */
 
-INSERT INTO `cms_cp` (`id`, `nama`, `email`, `telpon`, `subjek`, `pesan`) VALUES
-(1, 'saya', 'example@mail.com', '08123456789', 'subnya', 'ini pesan ini pesan ini pesan ini pesan ini pesan ini pesan ini pesan ini pesan ini pesan ini pesan ini pesan ini pesan ini pesan ini pesan ini pesan ini pesan '),
-(2, 'test nama', 'mail@mail.com', '9489104018', 'subsject', 'tidak ada pesan');
+/*Table structure for table `cms_upload` */
 
--- --------------------------------------------------------
-
---
--- Struktur dari tabel `cms_upload`
---
+DROP TABLE IF EXISTS `cms_upload`;
 
 CREATE TABLE `cms_upload` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_kategori` int(11) DEFAULT NULL,
+  `id_in_stock` int(11) DEFAULT NULL,
   `judul` varchar(255) DEFAULT NULL,
   `harga` int(11) NOT NULL,
   `desk` varchar(255) DEFAULT NULL,
-  `nama_file` varchar(255) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `nama_file` varchar(255) DEFAULT NULL,
+  `id_user` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
---
--- Dumping data untuk tabel `cms_upload`
---
+/*Data for the table `cms_upload` */
 
-INSERT INTO `cms_upload` (`id`, `judul`, `harga`, `desk`, `nama_file`) VALUES
-(4, 'Bass Fender Jazz Bass Squier Custome Second/Bekas', 1300000, 'Bass second pemakaian sendiri buat latihan dan buat manggung kondisi 85% mulus sound lumayan buat manggung. enak dipakai bass manja.\r\nsenar minta di ganti. Free:\r\n-softcase\r\n-tuner\r\n-jack', '../assets/uploads/Bass_Fender_jazz_bass_Squier_custome_Second_bekas.jpg'),
-(5, 'Gibson Less Paul', 4500000, 'mulus', '../assets/uploads/gitar-elektrik-stinge-alat-musik-gitar-bass-8775809.jpg'),
-(6, 'Gitar listrik original Caraya Black', 500000, 'minus : spull karatan', '../assets/uploads/Gitar_listrik_original_Caraya_Black.jpg');
+insert  into `cms_upload`(`id`,`id_kategori`,`id_in_stock`,`judul`,`harga`,`desk`,`nama_file`,`id_user`) values (7,1,1,'gambar gambar',3000,'deskripsi','../assets/uploads/17.jpeg',2);
 
--- --------------------------------------------------------
+/*Table structure for table `cms_user` */
 
---
--- Struktur dari tabel `cms_user`
---
+DROP TABLE IF EXISTS `cms_user`;
 
 CREATE TABLE `cms_user` (
-  `id_user` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL AUTO_INCREMENT,
   `full_name` varchar(255) DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL,
   `sandi` varchar(255) DEFAULT NULL,
@@ -83,63 +65,60 @@ CREATE TABLE `cms_user` (
   `tel` varchar(15) DEFAULT NULL,
   `alamat` text,
   `file_image` varchar(50) DEFAULT NULL,
-  `stat` enum('0','1','2') DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `stat` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id_user`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
---
--- Dumping data untuk tabel `cms_user`
---
+/*Data for the table `cms_user` */
 
-INSERT INTO `cms_user` (`id_user`, `full_name`, `username`, `sandi`, `email`, `tel`, `alamat`, `file_image`, `stat`) VALUES
-(1, 'ini nama mu', 'admin', '21232f297a57a5a743894a0e4a801fc3', 'example@mail.com', '0812345678910', 'disini aja', '../assets/uploads/LinuxWindows-730x350.jpg', '0'),
-(2, NULL, 'penjual1', '7fede5a7930d9ffafdf87bc536d39312', 'usernamenya@mail.com', NULL, NULL, NULL, '1'),
-(3, 'Pembeli', 'pembeli1', '0e68c82f5923d0edae2cc5523e2a21ad', 'pembeli1@gmail.com', '081555555277', 'jalan laswi 123 kota banjar bandung', NULL, '2');
+insert  into `cms_user`(`id_user`,`full_name`,`username`,`sandi`,`email`,`tel`,`alamat`,`file_image`,`stat`) values (1,'ini nama mu','admin','21232f297a57a5a743894a0e4a801fc3','example@mail.com','0812345678910','disini aja','../assets/uploads/LinuxWindows-730x350.jpg',1),(2,'penjual','penjual1','7fede5a7930d9ffafdf87bc536d39312','usernamenya@mail.com',NULL,NULL,NULL,2),(3,'Pembeli','pembeli1','0e68c82f5923d0edae2cc5523e2a21ad','pembeli1@gmail.com','081555555277','jalan laswi 123 kota banjar bandung',NULL,3);
 
---
--- Indexes for dumped tables
---
+/*Table structure for table `in_stock_barang` */
 
---
--- Indeks untuk tabel `cms_cp`
---
-ALTER TABLE `cms_cp`
-  ADD PRIMARY KEY (`id`);
+DROP TABLE IF EXISTS `in_stock_barang`;
 
---
--- Indeks untuk tabel `cms_upload`
---
-ALTER TABLE `cms_upload`
-  ADD PRIMARY KEY (`id`);
+CREATE TABLE `in_stock_barang` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `stock_barang` int(11) DEFAULT NULL,
+  `tanggal` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
---
--- Indeks untuk tabel `cms_user`
---
-ALTER TABLE `cms_user`
-  ADD PRIMARY KEY (`id_user`);
+/*Data for the table `in_stock_barang` */
 
---
--- AUTO_INCREMENT untuk tabel yang dibuang
---
+insert  into `in_stock_barang`(`id`,`stock_barang`,`tanggal`) values (1,10,'2019-04-09'),(2,30,'2019-04-05');
 
---
--- AUTO_INCREMENT untuk tabel `cms_cp`
---
-ALTER TABLE `cms_cp`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+/*Table structure for table `kategori_barang` */
 
---
--- AUTO_INCREMENT untuk tabel `cms_upload`
---
-ALTER TABLE `cms_upload`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+DROP TABLE IF EXISTS `kategori_barang`;
 
---
--- AUTO_INCREMENT untuk tabel `cms_user`
---
-ALTER TABLE `cms_user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-COMMIT;
+CREATE TABLE `kategori_barang` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `jenis_barang` varchar(255) DEFAULT NULL,
+  `deskripsi` text,
+  `id_user` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*Data for the table `kategori_barang` */
+
+insert  into `kategori_barang`(`id`,`jenis_barang`,`deskripsi`,`id_user`) values (1,'makanan',NULL,2),(2,'minuman',NULL,2);
+
+/*Table structure for table `tipe_user` */
+
+DROP TABLE IF EXISTS `tipe_user`;
+
+CREATE TABLE `tipe_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `jenis_user` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+/*Data for the table `tipe_user` */
+
+insert  into `tipe_user`(`id`,`jenis_user`) values (1,'admin'),(2,'penjual'),(3,'pembeli');
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;

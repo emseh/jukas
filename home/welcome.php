@@ -8,9 +8,12 @@
 	$query = mysqli_query($konek,"SELECT * FROM cms_upload");
 ?>
 <div class="content" style="padding-top: 100px;">
+	<?php if (isset($_SESSION['aksesm']) && $_SESSION['aksesm'] == 2) { ?>
 	<div class="panel-body" style="float: right; margin-top: -100px;">
 		<a style="color:#fff; background-color: #66899a; border-color: #66899a;"class="btn btn-success btn-labeled btn-xs" href="image_upload"><b><i class="icon-plus3"></i></b> Upload Gambar</a>
 	</div>
+	<?php } ?>
+	
 	<div class="row">
 		<?php while ($hasil = mysqli_fetch_array($query)) { ?>
 		<div class="col-md-4">

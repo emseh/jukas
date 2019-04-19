@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	require_once("connection.php");
 
 	$jdlfto = $_POST['nm_foto'];
@@ -12,7 +13,6 @@
 	if(isset($_POST["submit"])) {
 	    $check = getimagesize($_FILES["fl_foto"]["tmp_name"]);
 	    if($check !== false) {
-	        // echo "<script>alert("."'File is an image - " . $check["mime"] . ".'"."); window.location = '../home/welcome';</script>";
 	        $uploadOk = 1;
 	    } else {
 	        echo "<script>alert("."'File is not an image.'"."); window.location = '../home/galeri';</script>";
@@ -39,11 +39,21 @@
 	    echo "<script>alert("."'Sorry, your file was not uploaded.'"."); window.location = '../home/welcome';</script>";
 	} else {
 		if (move_uploaded_file($_FILES["fl_foto"]["tmp_name"], $target_file)) {
-			$sql = mysqli_query($konek,"INSERT INTO cms_upload (judul,desk,nama_file,harga) VALUES ('".$jdlfto."','".$deskrp."','".$target_file."','".$harga."')");
-			if ($sql === TRUE) {
-		    	echo "<script>alert("."'The file ". basename( $_FILES["fl_foto"]["name"]). " has been uploaded.'"."); window.location = '../home/welcome';</script>";
-			} else {
-				echo "Error: " . $sql . "<br>" . $konek->error;
+			$st = $_GET['status'];
+			if ($st == 'insert') {
+				$sql = mysqli_query($konek,"INSERT INTO cms_upload (judul,desk,nama_file,harga) VALUES ('".$jdlfto."','".$deskrp."','".$target_file."','".$harga."')");
+				if ($sql === TRUE) {
+			    	echo "<script>alert("."'The file ". basename( $_FILES["fl_foto"]["name"]). " has been uploaded.'"."); window.location = '../home/welcome';</script>";
+				} else {
+					echo "Error: " . $sql . "<br>" . $konek->error;
+				}
+			} else if ($st == 'update') {
+				$sql = mysqli_query($konek,"UPDATE cms_upload SET judul = '".$jdlfto."', harga = '".$harga."', desk = '".$deskrp."', nama_file = '".$target_file."', id_user = '".$_SESSION['iduser']."' WHERE id = '".$_GET['idb']."'");
+				if ($sql === TRUE) {
+			    	echo "<script>alert("."'The file ". basename( $_FILES["fl_foto"]["name"]). " has been uploaded.'"."); window.location = '../home/item_list';</script>";
+				} else {
+					echo "Error: " . $sql . "<br>" . $konek->error;
+				}
 			}
 		} else {
 		    echo "<script>alert("."'Sorry, there was an error uploading your file.'"."); window.location = '../home/galeri';</script>";
